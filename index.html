@@ -1,0 +1,59 @@
+<html>
+<head>
+    <title>Cas 36</title>
+    <!-- dobro je imati css u head-u da bi smo izbegli fouc -->
+    <!-- https://en.wikipedia.org/wiki/Flash_of_unstyled_content -->
+    <link rel="stylesheet" type="text/css" href="http://www.politika.rs/themed/politika/dist/style.min.css?v=5">
+
+    <!-- browser ce stati da ucita ovaj ogroman fajl i nece ici dalje sa parsiranjem strane dok ne zavrsi ucitavanje tog fajla -->
+    <!--<script src='./index.js' /></script>-->
+    
+    <script>
+        //sve iznad ovog trenutka kada je izbacena ova poruka je vec ucitano, u ovom slucaju css fajl
+        console.log('document state-->', document.readyState);
+        
+        function logujStanje() {
+            console.log('document state-->', document.readyState);
+            if(document.readyState === 'interactive') {
+                // ovde se izvrava sve ono sto bi se ucitavalo unutar jquery document ready-ija
+            }
+        }
+
+        document.onreadystatechange = logujStanje;
+
+        //$(document).on('ready', function() {
+            //ovde jquery drlja sa vasim interaktivnim js kodom
+        //})
+    </script>
+</head>
+
+<body>
+    <h1 onclick="alert('test')">Naslov</h1>
+    <h2>Podnaslov</h2>
+
+    <div>
+        div neki
+        <div>
+            <img src="http://www.fillmurray.com/2000/2000" width="500" height='500' alt="">
+            <img src="http://www.fillmurray.com/2200/2200" width="500" height='500' alt="">
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, <span>quo.</span></p>
+        <ul>
+            <li>1. Lorem ipsum.</li>
+            <li>2. Lorem ipsum.</li>
+        </ul>
+    </div>
+
+    <footer>
+        ovo je footer sajta
+    </footer>
+
+    <!-- ovo ce se ucitavati i sav sadrzaj ispod nece se parsirati dok se ne zavrsi ucitavnanje -->
+    <!-- simulirati sporu vezu u chrome-u da bi se lakse video ovaj scenario -->
+    <!-- treba imati na umu da nema garantovanog redosleda ucitavanja fajlova -->
+    <script async src='./index.js' /></script>
+    <script async src='./index1.js' /></script>
+    <script async src='./index2.js' /></script>
+
+</body>
+</html>

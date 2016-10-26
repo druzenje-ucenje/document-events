@@ -1,0 +1,33 @@
+<html>
+<head>
+    <title>Cas 36</title>
+    <!-- dobro je imati css u head-u da bi smo izbegli fouc -->
+    <!-- https://en.wikipedia.org/wiki/Flash_of_unstyled_content -->
+    <link rel="stylesheet" type="text/css" href="http://www.politika.rs/themed/politika/dist/style.min.css?v=5">
+</head>
+
+<body>
+    <h1 onclick="alert('test')">Naslov</h1>
+    <h2>Podnaslov</h2>
+
+    <div>
+        div neki
+        <div>
+            <!--kada dodamo async na skriptu browser ce nastaviti da ucitava stranu i kada se zavrsi ucitavanje js-a izvrsice kod unutar njega-->
+            <!--ukloniti async flag za demonstiranje blokirajuce prirode ucitavanja eksternog js fajla -->
+            <script async src='./index1.js' /></script>
+            <img src="http://www.fillmurray.com/300/300" width="500" height='500' alt="">
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, <span>quo.</span></p>
+        <ul>
+            <li>1. Lorem ipsum.</li>
+            <li>2. Lorem ipsum.</li>
+        </ul>
+    </div>
+
+    <footer>
+        ovo je footer sajta
+    </footer>
+
+</body>
+</html>
